@@ -14,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('login', 'UserController@login'); //do login
+Route::post('register', 'UserController@register');
+
+
+Route::group(['middleware' => ['jwt.verify']], function () {
+    Route::get('login/check', "UserController@LoginCheck"); //cek token
+    Route::post('logout', "UserController@logout"); //cek token
+    Route::get('book', 'DailyScrumController@daily');
+    Route::get('bookall', 'DailyScrumController@dailyAuth');
+
 });
