@@ -21,7 +21,10 @@ Route::post('register', 'UserController@register');
 Route::group(['middleware' => ['jwt.verify']], function () {
     Route::get('login/check', "UserController@LoginCheck"); //cek token
     Route::post('logout', "UserController@logout"); //cek token
-    Route::get('book', 'DailyScrumController@daily');
-    Route::get('bookall', 'DailyScrumController@dailyAuth');
+	Route::post('daily', 'DailyScrumController@store'); 
+    Route::delete('daily/{id}', "DailyScrumController@delete"); 
+    Route::get('daily', "DailyScrumController@index"); 
+
+
 
 });

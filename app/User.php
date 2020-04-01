@@ -37,4 +37,10 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function daily_scrums(){
+        // disini kita katakan bahwa setiap user akan memiliki banyak post
+        // keterangan: itu PostModel sesuaikan dengan nama MODEL POST yang agan gunakan
+        return $this->hasMany('App\Daily_scrum', 'id_users');
+    }      
 }
