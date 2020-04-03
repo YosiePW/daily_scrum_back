@@ -32,7 +32,8 @@ class UserController extends Controller
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:6|same:password_confirmation',
+            'password_confirmation' => 'required|string|min:6',
 
         ]);
 
@@ -45,6 +46,7 @@ class UserController extends Controller
             'lastname' => $request->get('lastname'),
             'email' => $request->get('email'),
             'password' => Hash::make($request->get('password')),
+            'password_confirmation' => Hash::make($request->get('password_confirmation')),
 
         ]);
 
